@@ -1,14 +1,16 @@
 import { PropTypes } from "prop-types"
 
-const ButtonAuth = ({titleButton, colorBg}) => {
+const ButtonAuth = (props) => {
+  const {titleButton, colorBg, type} = props;
   return (
-    <button className={`bg-${colorBg} px-4 py-2 rounded-full mt-4`}>{titleButton}</button>
+    <button className={`bg-${colorBg} px-4 py-2 rounded-full mt-4`} type={type}>{titleButton}</button>
   )
 }
 
 ButtonAuth.propTypes = {
-    titleButton: PropTypes.isRequred,
-    colorBg: PropTypes.isRequred,
+    titleButton: PropTypes.any,
+    colorBg: PropTypes.any,
+    type: PropTypes.any,
 }
 
 export default ButtonAuth

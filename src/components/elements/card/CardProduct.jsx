@@ -4,7 +4,7 @@ const CardProduct = (props) => {
     const {img, title, children} = props;
 
     return (
-        <article className="w-[250px] h-auto p-4 rounded-3xl bg-slate-300 flex flex-col justify-start">
+        <article className="w-[250px] h-[320px] p-4 rounded-3xl bg-slate-300 flex flex-col justify-start">
             <img src={img} alt={title} className="w-full h-[200px] rounded-3xl object-cover"/>
             <h3 className="text-[27px] font-bold">{title}</h3>
             {children}

@@ -1,6 +1,8 @@
-import { PropTypes } from "prop-types"
+import  PropTypes from "prop-types"
 
-const InputAuth = ({titleInput, example, typeInput}) => {
+const InputAuth = (props) => {
+    const {titleInput, example, typeInput, name} = props;
+    
     return (
         <>
             <label htmlFor={titleInput}>{titleInput}</label>
@@ -9,14 +11,16 @@ const InputAuth = ({titleInput, example, typeInput}) => {
                 type={typeInput}
                 id={titleInput}
                 placeholder={example}
+                name={name}
             />
         </>
     )
 }
 
 InputAuth.propTypes = {
-    titleInput: PropTypes.isRequred,
-    example: PropTypes.isRequred,
-    typeInput: PropTypes.isRequred,
+    titleInput: PropTypes.any,
+    example: PropTypes.any,
+    typeInput: PropTypes.any,
+    name: PropTypes.any,
 }
 export default InputAuth
