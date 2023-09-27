@@ -1,22 +1,30 @@
-import { CardProduct } from "../../elements"
+import PropTypes from 'prop-types';
+import { CardProduct } from '../../elements';
 
-const ProductFragment = () => {
+const ProductFragment = ({title, dataProducts}) => {
   return (
-    <>
-        <CardProduct
-        img="https://images.unsplash.com/photo-1608231387042-66d1773070a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
-        title='white Shoe'
-        >
-            <CardProduct.Discon price={1249} discon={15.46}></CardProduct.Discon>
-        </CardProduct>
-        <CardProduct
-        img="https://images.unsplash.com/photo-1608231387042-66d1773070a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
-        title='white Shoe'
-        >
-            <CardProduct.NormalPrice price={1500}></CardProduct.NormalPrice>
-        </CardProduct>
-    </>
+    <section className="px-4">
+        <h1 className='font-extrabold text-[32px]'>{title}</h1>
+        <div className=" gap-2 flex flex-wrap items-center justify-center">
+            {dataProducts.map((data) => (
+                <CardProduct
+                key={data.id}
+                img={data.img}
+                title={data.title}>
+                    {data.discount
+                        ?<CardProduct.Discount discount={data.discount} price={data.price} />
+                        :<CardProduct.NormalPrice price={data.price} />
+                    }
+                </CardProduct>
+            ))}
+        </div>
+    </section>
   )
+}
+
+ProductFragment.propTypes = {
+    title: PropTypes.string,
+    dataProducts: PropTypes.any,
 }
 
 export default ProductFragment

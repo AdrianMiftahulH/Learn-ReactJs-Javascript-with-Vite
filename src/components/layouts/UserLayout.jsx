@@ -6,7 +6,7 @@ const UserLayout = (props) => {
     return (
         <>
             <Header />
-            <main className="min-h-screen">
+            <main className="min-h-screen mt-6">
                 {children}
             </main>
             <Footer />
@@ -15,6 +15,6 @@ const UserLayout = (props) => {
 }
 
 UserLayout.propTypes = {
-    children: PropTypes.isRequired
+    children: PropTypes.any.isRequired
 }
 export default UserLayout
