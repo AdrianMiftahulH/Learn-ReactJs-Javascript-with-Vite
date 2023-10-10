@@ -1,15 +1,27 @@
 import { Link } from "react-router-dom"
 
 const Header = () => {
-  const removeLocal = localStorage.removeItem('auth');
+
+  const handleLogout = () => {
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
+
+    window.location.href = '/login'
+  }
+  
+  const email = localStorage.getItem('email');
+
   return (
     <header className="inline-flex w-screen justify-between px-6 items-center">
-        <Link to="" className="text-[27px] font-semibold">TitleWebsite</Link>
+        <div>
+          <Link to="" className="text-[27px] font-semibold">TitleWebsite</Link>
+          <span> | {localStorage.getItem('email')}</span>
+        </div>
         <nav className="inline-flex items-center gap-2 justify-end">
             <Link to="#discon">Diskon</Link>
             <Link to="#product">Product</Link>
-            {localStorage.getItem('auth')
-            ? <button className="font-bold" onClick={removeLocal}>Login</button>
+            {email
+            ? <button className="font-bold" onClick={handleLogout}>Logout</button>
             : <Link to="/login" className="font-bold">Login</Link>
           }
         </nav>

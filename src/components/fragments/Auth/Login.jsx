@@ -16,7 +16,10 @@ const LoginFragment = () => {
 
     return (
         <>
-            <h1 className="text-[24px] font-bold text-center">Login</h1>
+            <div className="inline-flex justify-between items-center w-full">
+                <h1 className="text-[24px] font-bold text-center">Login</h1>
+                <Link to='/'>Close</Link>
+            </div>
             <form className="flex flex-col gap-2 my-6 " onSubmit={handleLogin}>
                 <InputAuth titleInput="email" example="ex: example@gmail.com" typeInput="email" name="email"/>
                 <InputAuth titleInput="password" example="ex: *******" typeInput="password"  name="password"/>

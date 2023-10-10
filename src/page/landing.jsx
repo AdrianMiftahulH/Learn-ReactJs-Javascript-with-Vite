@@ -26,9 +26,9 @@ const product_discount = [
   {
     id: 4,
     title: "Shoe 4",
-    img: 'https://i.dummyjson.com/data/products/2/5.jpg',
-    discount: 13.56,
-    price: 2700
+    img: 'https://i.dummyjson.com/data/products/2/3.jpg',
+    discount: 11.56,
+    price: 2100
   },
   {
     id: 5,
@@ -47,12 +47,6 @@ const product_discount = [
     title: "Shoe 7",
     img: 'https://i.dummyjson.com/data/products/2/3.jpg',
     price: 2100
-  },
-  {
-    id: 8,
-    title: "Shoe 8",
-    img: 'https://i.dummyjson.com/data/products/2/5.jpg',
-    price: 2700
   },
 ]
 
