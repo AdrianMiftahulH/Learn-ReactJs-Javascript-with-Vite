@@ -1,9 +1,32 @@
 import PropTypes from 'prop-types';
 import { CardProduct } from '../../elements';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ProductFragment = ({title, dataProducts}) => {
     const [cart, setCart] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    useEffect(() => {
+        setCart(JSON.parse(localStorage.getItem('cart')) || []);
+    }, []);
+
+    useEffect(() => {
+        if(cart.length > 0){
+            const sum = cart.reduce((acc, item) => {
+                const findProduct = dataProducts.find((product) => product.id === item.id)
+                const preDiscount = findProduct.discount / 100;
+                const resultDiscount = findProduct.price - preDiscount * findProduct.price;
+    
+                if(findProduct.discount){
+                    return acc + resultDiscount * item.qty
+                }else{
+                    return acc + findProduct.price * item.qty
+                }
+            }, 0)
+            setTotalPrice(sum);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    }, [cart]);
 
     const handleToCart = (id) => {
         if(cart.find(item => item.id === id)) {
@@ -17,6 +40,12 @@ const ProductFragment = ({title, dataProducts}) => {
             }])
         }
     }
+
+    let USDollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+
   return (
     <section className="px-10 my-6">
         <h1 className='font-extrabold text-[32px]'>{title}</h1>
@@ -42,10 +71,6 @@ const ProductFragment = ({title, dataProducts}) => {
                 <section className='my-5 flex flex-col gap-2'>
                     {cart.map((itemCart) => {
                         const findProduct = dataProducts.find((product) => product.id === itemCart.id)
-                        let USDollar = new Intl.NumberFormat('en-US', {
-                            style: 'currency',
-                            currency: 'USD',
-                        });
                         const preDiscount = findProduct.discount / 100;
                         const resultDiscount = findProduct.price - preDiscount * findProduct.price;
 
@@ -67,6 +92,11 @@ const ProductFragment = ({title, dataProducts}) => {
                         )
                     })}
                 </section>
+                <div className='border-b-4 border-slate-800'></div>
+                <article className='inline-flex justify-between w-full'>
+                    <h4 className='font-bold text-lg'>Total</h4>
+                    <span>{USDollar.format(totalPrice)}</span>
+                </article>
             </section>
         </article>
     </section>
