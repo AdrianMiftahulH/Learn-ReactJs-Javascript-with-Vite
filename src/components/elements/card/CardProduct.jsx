@@ -6,10 +6,10 @@ const CardProduct = (props) => {
     return (
         <article className="w-[250px] h-[320px] p-4 rounded-3xl bg-slate-300 flex flex-col justify-start">
             <img src={img} alt={title} className="w-full h-[200px] rounded-3xl object-cover"/>
-            <h3 className="text-[27px] font-bold">{title}</h3>
+            <h3 className="text-[27px] font-bold overflow-y-scroll">{title.substring(0, 10)}...</h3>
             <div className="inline-flex justify-between items-center">
                 <div className="flex flex-col items-end">
-                    {children}
+                    {children}git rebase origin/master
                 </div>
                 <button className="bg-slate-700 px-6 py-2 text-white rounded-lg" onClick={() => handleCartBtn(id)}>Cart</button>
             </div>
