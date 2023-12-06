@@ -7,7 +7,7 @@ const getProducts = async (callback) => {
             callback(res.data.products)
         })
     } catch(err) {
-        err.response.data
+        callback(err)
     }
 }
 

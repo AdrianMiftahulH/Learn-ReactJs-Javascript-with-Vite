@@ -6,7 +6,7 @@ const CardProduct = (props) => {
     return (
         <article className="w-[250px] h-[320px] p-4 rounded-3xl bg-slate-300 flex flex-col justify-start">
             <img src={img} alt={title} className="w-full h-[200px] rounded-3xl object-cover"/>
-            <h3 className="text-[27px] font-bold overflow-y-scroll">{title.substring(0, 10)}...</h3>
+            <h3 className="text-[27px] font-bold">{title.substring(0, 10)}...</h3>
             <div className="inline-flex justify-between items-center">
                 <div className="flex flex-col items-end">
                     {children}git rebase origin/master
