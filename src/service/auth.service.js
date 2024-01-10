@@ -12,7 +12,7 @@ export const authPost = async (data, callback) => {
     }
 }
 
-export const getUsername = (token) => {
+export const getProfile = (token) => {
     const decoded = jwtDecode(token);
-    return decoded.username
+    return decoded
 }

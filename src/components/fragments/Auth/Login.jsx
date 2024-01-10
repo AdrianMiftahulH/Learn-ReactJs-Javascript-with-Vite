@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { ButtonAuth, InputAuth } from "../../elements"
 import { authPost } from "../../../service/auth.service";
 import { useState } from "react";
-import { toast, ToastContainer } from 'react-toastify';
+// import { toast, ToastContainer } from 'react-toastify';
 
 const LoginFragment = () => {
     const [loginFail, setLoginFail] = useState('');
@@ -15,25 +15,26 @@ const LoginFragment = () => {
             password : event.target.password.value
         }
 
-        const notify = (title) => {
-            toast.error(title, {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        }
+        // const notify = (title) => {
+        //     toast.error(title, {
+        //         position: "bottom-right",
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         theme: "dark",
+        //     });
+        // }
 
         authPost(data, ((status, res) => {
             if (status) {
                 localStorage.setItem('token', res)
+                window.location.href('/')
             } else {
                 setLoginFail(res.response.data.message);
-                notify(res.response.data.message)
+                // notify(res.response.data.message)
                 console.log(res.response.data.message)
             }
         }));
@@ -49,7 +50,7 @@ const LoginFragment = () => {
                 <ButtonAuth titleButton="Login" colorBg="slate-900" type="submit"/>
             </form>
             <span>Belum Punya Akun ? <Link to='/register' className="text-slate-900">Register</Link></span>
-            <ToastContainer 
+            {/* <ToastContainer 
                 position="bottom-right"
                 autoClose={5000}
                 hideProgressBar={false}
@@ -59,7 +60,7 @@ const LoginFragment = () => {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                theme="dark" />
+                theme="dark" /> */}
         </>
     )
 }

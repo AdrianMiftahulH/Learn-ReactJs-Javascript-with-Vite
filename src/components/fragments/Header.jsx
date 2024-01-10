@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
-import { getUsername } from "../../service/auth.service";
+import { useLogin } from "../../hooks/useLogin";
 
 const Header = () => {
-  const [username, setUsername] = useState('')
+  const profile = useLogin();
+  const username = profile.username;
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -11,24 +11,18 @@ const Header = () => {
     window.location.href = '/login'
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if(token){
-      setUsername(getUsername(token));
-    }else{
-      window.location.href = "/login"
-    }
-  }, [])
-
   return (
     <header className="inline-flex w-screen justify-between px-6 items-center">
-        <div>
-          <Link to="" className="text-[27px] font-semibold">TitleWebsite</Link>
-          <span> | {username}</span>
+        <div className="inline-flex items-center">
+          <Link to="/" className="text-[27px] font-semibold">TitleWebsite</Link>
+          {username 
+          ? <span> | {username}</span>
+          : <div></div>}
         </div>
         <nav className="inline-flex items-center gap-2 justify-end">
-            <Link to="#discon">Diskon</Link>
-            <Link to="#product">Product</Link>
+            
+            <Link to="/">Home</Link>
+            <Link to='/profile'>Profile</Link>
             {username
             ? <button className="font-bold" onClick={handleLogout}>Logout</button>
             : <Link to="/login" className="font-bold">Login</Link>

@@ -1,5 +1,6 @@
 import DummyApi from "../api/dummyAPi"
 
+// get all product
 const getProducts = async (callback) => {
     try{
         await DummyApi.get('/products')
@@ -11,6 +12,19 @@ const getProducts = async (callback) => {
     }
 }
 
+// get detail product
+const getDetailProduct = async (id, callback) => {
+    try{
+        await DummyApi.get(`products/${id}`)
+        .then((res) => {
+            callback(res.data)
+        })
+    } catch(err) {
+        callback(err)
+    }
+}
+
 export {
-    getProducts
+    getProducts,
+    getDetailProduct
 }

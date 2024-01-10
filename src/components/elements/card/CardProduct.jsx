@@ -1,17 +1,21 @@
 import { PropTypes } from "prop-types"
+import { Link } from "react-router-dom";
 
 const CardProduct = (props) => {
     const {id, img, title, children, handleCartBtn} = props;
 
     return (
-        <article className="w-[250px] h-[320px] p-4 rounded-3xl bg-slate-300 flex flex-col justify-start">
+        <article className="w-[250px] h-[320px] p-4 rounded-3xl bg-slate-100 flex flex-col justify-start hover:opacity-80">
             <img src={img} alt={title} className="w-full h-[200px] rounded-3xl object-cover"/>
-            <h3 className="text-[27px] font-bold">{title.substring(0, 10)}...</h3>
+            {title.length >= 13
+            ? <Link to={`product/${id}`} className="text-[27px] font-bold">{title.substring(0, 13)}...</Link>
+            : <Link to={`product/${id}`} className="text-[27px] font-bold">{title.substring(0, 12)}</Link>
+            }
             <div className="inline-flex justify-between items-center">
                 <div className="flex flex-col items-end">
                     {children}git rebase origin/master
                 </div>
-                <button className="bg-slate-700 px-6 py-2 text-white rounded-lg" onClick={() => handleCartBtn(id)}>Cart</button>
+                <button className="bg-slate-700 px-6 py-2 text-white rounded-lg hover:bg-black z-50" onClick={() => handleCartBtn(id)}>Cart</button>
             </div>
         </article>
     )
@@ -19,6 +23,7 @@ const CardProduct = (props) => {
 
 const NormalPrice = (props) => {
     const {price} = props;
+
     let USDollar = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
