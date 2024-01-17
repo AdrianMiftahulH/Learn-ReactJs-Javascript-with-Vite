@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { CardProduct } from '../../elements';
-import { useEffect, useState } from 'react';
 import ImgDataEmpty from '../../../assets/notFoundData.jpeg'
 
 const ProductFragment = ({productData, handleToCart}) => {

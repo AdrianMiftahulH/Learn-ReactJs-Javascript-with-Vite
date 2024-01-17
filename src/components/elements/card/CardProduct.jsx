@@ -1,5 +1,6 @@
 import { PropTypes } from "prop-types"
 import { Link } from "react-router-dom";
+import FormatDollar from "../format/FormatDollar";
 
 const CardProduct = (props) => {
     const {id, img, title, children, handleCartBtn} = props;
@@ -13,7 +14,7 @@ const CardProduct = (props) => {
             }
             <div className="inline-flex justify-between items-center">
                 <div className="flex flex-col items-end">
-                    {children}git rebase origin/master
+                    {children}
                 </div>
                 <button className="bg-slate-700 px-6 py-2 text-white rounded-lg hover:bg-black z-50" onClick={() => handleCartBtn(id)}>Cart</button>
             </div>
@@ -24,12 +25,7 @@ const CardProduct = (props) => {
 const NormalPrice = (props) => {
     const {price} = props;
 
-    let USDollar = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    });
-
-    return <p className="text-[18px] font-medium">USD {USDollar.format(price.toFixed(2))}</p>
+    return <p className="text-[18px] font-medium">USD {FormatDollar.format(price.toFixed(2))}</p>
 }
 
 const Discount = (props) => {
@@ -37,18 +33,14 @@ const Discount = (props) => {
 
     const preDiscount = discount / 100;
     const resultDiscount = price - preDiscount * price;
-    let USDollar = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    });
 
     return(
         <>
             <div className="inline-flex gap-2 items-center">
                 <p className="text-[14px] font-bold p-1 rounded-full bg-slate-500">{discount}</p>
-                <p className="text-[12px] font-light line-through">USD {USDollar.format(price.toFixed(2))}</p>
+                <p className="text-[12px] font-light line-through">USD {FormatDollar.format(price.toFixed(2))}</p>
             </div>
-            <p className="text-[18px] font-medium">USD {USDollar.format(resultDiscount.toFixed(2))}</p>
+            <p className="text-[18px] font-medium">USD {FormatDollar.format(resultDiscount.toFixed(2))}</p>
         </>
     )
 }

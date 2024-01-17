@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+td{
+    @apply pr-2
+}
+
+td:nth-child(1){
+    @apply text-gray-500
+}
